@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🗞️ MemeDesk - Marathi Fake News Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main: #fff;
+      --accent: #ff5e78;
+      --bg: #0f0f0f;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg);
+      color: var(--main);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #1a1a1a;
+      padding: 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--accent);
+      animation: fadeSlide 1s ease-in-out;
+    }
+
+    .startup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 90vh;
+      background: linear-gradient(135deg, #121212, #1f1f1f);
+      animation: fadeIn 1.5s ease;
+    }
+
+    .startup h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      animation: slideUp 1s ease;
+      color: #fff;
+    }
+
+    .startup p {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-bottom: 30px;
+      animation: slideUp 1.4s ease;
+    }
+
+    .icons {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .icon {
+      font-size: 2rem;
+      background-color: #1e1e1e;
+      border-radius: 50%;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      animation: slideIn 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .icon:nth-child(1) { animation-delay: 0.2s }
+    .icon:nth-child(2) { animation-delay: 0.4s }
+    .icon:nth-child(3) { animation-delay: 0.6s }
+    .icon:nth-child(4) { animation-delay: 0.8s }
+
+    .generator {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .headline {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 15px;
+      background: #1a1a1a;
+      box-shadow: var(--shadow);
+      max-width: 700px;
+      animation: fadeIn 0.8s ease;
+      color: #eee;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🗞️ MemeDesk</h1>
+</header>
+
+<section class="startup">
+  <h2>Marathi Meme Fake News Generator</h2>
+  <p>Made by legends, for memes. Click. Laugh. Share. 🔥</p>
+
+  <div class="icons">
+    <div class="icon">😹</div>
+    <div class="icon">🚀</div>
+    <div class="icon">🎭</div>
+    <div class="icon">📣</div>
+  </div>
+
+  <button onclick="scrollToGenerator()">Start Generating 🔥</button>
+</section>
+
+<section class="generator" id="generator">
+  <div id="headline" class="headline">
+    📰 BREAKING NEWS will appear here!
+  </div>
+  <button onclick="generateNews()">🎲 Generate News</button>
+  <button onclick="saveHeadline()">💾 Save</button>
+</section>
+
+<footer>© 2025 MemeDesk Inc. | Built with love and laughter 😎</footer>
+
+<script>
+  const subjects = [
+    'Elvish bhai', 'Modi bhau', 'Binod bhau', 'Zebra Uncle', 'TikTok Kaka',
+    'Apple Watch Sheth', 'Doni Vahini', 'Shaktiman', 'Ambani baba', 'DJ Bhusa',
+    'Gaitonde Bhai', 'Champaklal', 'Pushpa Pandit', 'Kacha Limbu',
+    'Babli hacker', 'Wakya developer', 'Kavita tai', 'Baburao apte',
+    'Ankush bhau', 'Bhauji'
+  ];
+
+  const actions = [
+    'tula block kela', 'status lavla', 'vangyachi bhaji banavli',
+    'dosa firavla', 'scooter var dance kela', 'live madhe gaali dili',
+    'Aadhaar office madhe meme dakhavla', 'pan tapla', 'kaam karnyas niraakarn kela',
+    'AI madhe reel banavla', 'chatGPT la bajavla', 'Twitter var fight keli',
+    'filter la cancel kela', 'announcement kelay ki me bhaukto nahi',
+    'phone la kela chumban', 'sunbai la update kela', 'meme madhe viral zala'
+  ];
+
+  const places = [
+    'dongra var', 'metro madhye', 'stadium madhe', 'Instagram live madhun',
+    'BRT madhe', 'kachra gadi varun', 'nalla madhye', 'reel studio madhye',
+    'panipuri thelyavar', 'filter paani line madhe', 'Aadhaar office madhe',
+    'whatsapp group madhun', 'telegram var', 'bank queue madhun', 'ganpati pandal madhun'
+  ];
+
+  function getRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function generateNews() {
+    const headline = `📰 BREAKING NEWS: ${getRandom(subjects)} ${getRandom(actions)} ${getRandom(places)}!`;
+    document.getElementById("headline").textContent = headline;
+  }
+
+  function saveHeadline() {
+    const text = document.getElementById("headline").textContent;
+    const blob = new Blob([text], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "meme_news.txt";
+    link.click();
+  }
+
+  function scrollToGenerator() {
+    document.getElementById('generator').scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
